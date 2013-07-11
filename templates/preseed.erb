@@ -45,7 +45,7 @@ openstack ::                                    \
         vg_name{ cinder-volumes }                 \
 .                                               \
 <% end -%>
-10240 1050 <%= @root_part_size %> ext4                          \
+32768 1050 <%= @root_part_size %> ext4                          \
         $lvmok{ }                               \
         method{ format } format{ }              \
         use_filesystem{ } filesystem{ ext4 }    \

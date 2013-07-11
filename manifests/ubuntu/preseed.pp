@@ -14,7 +14,7 @@ define cobbler::ubuntu::preseed(
   $boot_disk = undef,
   $autostart_puppet = true,
   $root_part_size = 65536,
-  $var_part_size = 524288,
+  $var_part_size = 100000000,
 ) {
     if ( ! defined(File['/etc/cobbler/preseeds'])) {
         file { "/etc/cobbler/preseeds":
