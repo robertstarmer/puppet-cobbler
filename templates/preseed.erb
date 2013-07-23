@@ -45,7 +45,7 @@ openstack ::                                    \
         vg_name{ cinder-volumes }                 \
 .                                               \
 <% end -%>
-32768 1050 <%= @root_part_size %> ext4                          \
+<%= @root_part_size %> 1030 <%= @root_part_size %> ext4                          \
         $lvmok{ }                               \
         method{ format } format{ }              \
         use_filesystem{ } filesystem{ ext4 }    \
@@ -53,20 +53,25 @@ openstack ::                                    \
         in_vg{ cinder-volumes }                   \
         lv_name{ slash }                        \
 .                                               \
-1024 1030 4098 linux-swap                        \
+1024 1040 4098 linux-swap                        \
         $lvmok{ }                               \
         method{ swap } format{ }                \
         in_vg{ cinder-volumes }                   \
         lv_name{ swap }                         \
 .                                               \
-10240 1150 <%= @var_part_size %> ext4                         \
+<%= @var_part_size %> 1050 <%= @var_part_size %> ext4                         \
         $lvmok{ }                               \
         method{ format } format{ }              \
         use_filesystem{ } filesystem{ ext4 }    \
         mountpoint{ /var }                      \
         in_vg{ cinder-volumes }                   \
         lv_name{ var }                          \
-.                                               
+<% if enable_hack %>.                                               \
+1024 1060 1024 ext4                         \
+        $lvmok{ }                               \
+        in_vg{ cinder-volumes }                   \
+        lv_name{ hack }                         \
+<% end -%>.
 <% else -%>
 d-i partman-auto/method string regular
 d-i partman-auto/choose_recipe select atomic
