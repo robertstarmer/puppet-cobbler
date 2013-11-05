@@ -30,7 +30,7 @@ class cobbler::params {
       $default_kickstart   = '/var/lib/cobbler/kickstarts/ubuntu-server.preseed'
     }
     default: {
-      fail("Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} currently only supports osfamily RedHat")
+      fail("Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} currently only supports osfamily RedHat or Debian")
     }
   }
   $package_ensure = 'present'
